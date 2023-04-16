@@ -20,11 +20,11 @@ public class MemberController {
         return memberService.findById(id);
     }
 
-    public void updateMember(String id, MemberDto byIdMember) throws SQLException {
-        memberService.updateMember(id, byIdMember);
+    public void updateMember(int memberNo, MemberDto byIdMember) throws SQLException {
+        memberService.updateMember(memberNo, byIdMember);
     }
 
-    public void deleteMember(String id) throws SQLException {
-        memberService.deleteMember(id);
+    public void deleteMember(int memberNo) throws SQLException {
+        memberService.deleteMember(memberNo);
     }
 }
