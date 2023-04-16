@@ -70,16 +70,6 @@ public class View {
                             continue;
                         }
 
-                        System.out.print("현재 로그인 된 아이디: ");
-                        id = scanner.next();
-
-                        byIdMember = memberController.findById(id);
-
-                        if (byIdMember.getMemberId() == null) {
-                            System.out.println("해당 회원 아이디로 조회된 정보는 없습니다.");
-                            continue;
-                        }
-
                         System.out.print("변경할 이름: ");
                         byIdMember.setMemberName(scanner.next());
 
