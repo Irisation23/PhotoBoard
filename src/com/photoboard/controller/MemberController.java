@@ -23,4 +23,8 @@ public class MemberController {
     public void updateMember(String id, MemberDto byIdMember) throws SQLException {
         memberService.updateMember(id, byIdMember);
     }
+
+    public void deleteMember(String id) throws SQLException {
+        memberService.deleteMember(id);
+    }
 }
