@@ -90,4 +90,25 @@ public class MemberDao {
             DBUtil.getInstance().close();
         }
     }
+
+    public void deleteMember(String id) throws SQLException {
+        Connection connection = DBUtil.getInstance().getConnection();
+        PreparedStatement pstmt;
+
+        try {
+            connection.setAutoCommit(false);
+            pstmt = connection.prepareStatement("DELETE FROM Member WHERE member_id = ?");
+
+            pstmt.setString(1, id);
+
+            if (pstmt.executeUpdate() > 0) {
+                System.out.println("delete Member Success!");
+                connection.commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.getInstance().close();
+        }
+    }
 }

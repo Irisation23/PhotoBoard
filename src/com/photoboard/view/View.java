@@ -26,6 +26,7 @@ public class View {
             System.out.println("--- 환영합니다. ---");
             System.out.println("--- 1. 회원가입 ---");
             System.out.println("--- 2. 회원수정 ---");
+            System.out.println("--- 3. 회원탈퇴 ---");
 
             int value = scanner.nextInt();
 
@@ -56,7 +57,7 @@ public class View {
                     System.out.print("아이디: ");
                     id = scanner.next();
 
-                    MemberDto byIdMember = memberController.findById(id);
+                    byIdMember = memberController.findById(id);
                     if (byIdMember.getMemberId() == null) {
                         System.out.println("해당 회원 아이디로 조회된 정보는 없습니다.");
                         continue;
@@ -74,6 +75,30 @@ public class View {
                     memberController.updateMember(id, byIdMember);
 
                     System.out.println("변경 완료 되었습니다.");
+                    break;
+
+                case 3:
+                    System.out.println("*** 회원 탈퇴 ***");
+                    System.out.print("아이디: ");
+                    id = scanner.next();
+
+                    byIdMember = memberController.findById(id);
+
+                    if (byIdMember.getMemberId() == null) {
+                        System.out.println("해당 회원 아이디로 조회된 정보는 없습니다.");
+                        continue;
+                    }
+
+                    System.out.print("탈퇴할 아이디의 비밀번호: ");
+
+                    pwd = scanner.next();
+
+                    if (!byIdMember.getMemberPwd().equals(pwd)) {
+                        System.out.println("비밀 번호가 맞지 않습니다.");
+                        continue;
+                    }
+
+                    memberController.deleteMember(id);
                     break;
 
                 default:
