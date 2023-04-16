@@ -375,4 +375,6 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+src/info/dbinfo.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,intellij,intellij+iml,java,macos,windows,maven,gradle,sonar,sonarqube
