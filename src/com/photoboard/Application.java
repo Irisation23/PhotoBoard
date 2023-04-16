@@ -1,5 +1,6 @@
 package com.photoboard;
 
+import com.photoboard.controller.LoginController;
 import com.photoboard.controller.MemberController;
 import com.photoboard.util.DBUtil;
 import com.photoboard.view.View;
@@ -30,7 +31,7 @@ public class Application {
             e.printStackTrace();
         }
 
-        View view = new View(new MemberController());
+        View view = new View(new MemberController(), new LoginController());
         view.print();
     }
 }

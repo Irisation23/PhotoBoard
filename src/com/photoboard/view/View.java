@@ -1,22 +1,27 @@
 package com.photoboard.view;
 
+import com.photoboard.controller.LoginController;
 import com.photoboard.controller.MemberController;
+import com.photoboard.dto.LoginDto;
 import com.photoboard.dto.MemberDto;
+import com.photoboard.view.session.Session;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class View {
 
-    private MemberController memberController;
+    private final MemberController memberController;
+    private final LoginController loginController;
 
     private String id;
     private String name;
     private String pwd;
-
     private MemberDto byIdMember;
+    private Session<LoginDto> session;
 
-    public View(MemberController memberController) {
+    public View(MemberController memberController, LoginController loginController) {
         this.memberController = memberController;
+        this.loginController = loginController;
     }
 
     public void print() throws SQLException {
@@ -27,6 +32,7 @@ public class View {
             System.out.println("--- 1. 회원가입 ---");
             System.out.println("--- 2. 회원수정 ---");
             System.out.println("--- 3. 회원탈퇴 ---");
+            System.out.println("--- 4. 로그인 ---");
 
             int value = scanner.nextInt();
 
@@ -99,6 +105,39 @@ public class View {
                     }
 
                     memberController.deleteMember(id);
+                    break;
+
+                case 4:
+                    System.out.println("*** 로그인 페이지 ***");
+
+                    if (session != null) {
+                        System.out.println("이미 로그인 되어 있습니다.");
+                        continue;
+                    }
+
+                    System.out.print("아이디: ");
+                    id = scanner.next();
+
+                    byIdMember = memberController.findById(id);
+
+                    if (byIdMember.getMemberId() == null) {
+                        System.out.println("해당 회원 아이디로 조회된 정보는 없습니다.");
+                        continue;
+                    }
+
+                    System.out.print("비밀번호: ");
+                    pwd = scanner.next();
+
+                    LoginDto login = loginController.login(id, pwd);
+
+                    if (login.getMemberNo() == -1) {
+                        System.out.println("해당 로그인 정보는 존재하지 않습니다. 다시 로그인 해주세요.");
+                        continue;
+                    }
+
+                    session = new Session<>(login);
+
+                    System.out.println(login.getMemberName() + " 님 환영합니다.");
                     break;
 
                 default:
