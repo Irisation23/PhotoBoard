@@ -70,7 +70,7 @@ public class View {
                             continue;
                         }
 
-                        System.out.print("아이디: ");
+                        System.out.print("현재 로그인 된 아이디: ");
                         id = scanner.next();
 
                         byIdMember = memberController.findById(id);
@@ -93,11 +93,19 @@ public class View {
                                                              .getMemberNo(), byIdMember);
 
                         System.out.println("변경 완료 되었습니다.");
+                        session = null;
+
                         continue;
 
                     case 3:
                         System.out.println("*** 회원 탈퇴 ***");
-                        System.out.print("아이디: ");
+
+                        if (session == null) {
+                            System.out.println("로그인이 필요한 페이지 입니다.");
+                            continue;
+                        }
+
+                        System.out.print("탈퇴할 아이디: ");
                         id = scanner.next();
 
                         byIdMember = memberController.findById(id);
@@ -117,6 +125,8 @@ public class View {
                         }
 
                         memberController.deleteMember(session.getData().getMemberNo());
+                        session = null;
+
                         continue;
 
                     case 4:
@@ -172,7 +182,6 @@ public class View {
                 break;
             } catch (Exception e) {
                 System.out.println("1부터 6까지 입력 가능합니다.");
-                return;
             }
         }
     }
