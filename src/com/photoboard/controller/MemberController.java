@@ -15,4 +15,12 @@ public class MemberController {
     public void createMember(MemberDto memberDto) throws SQLException {
         memberService.createMember(memberDto);
     }
+
+    public MemberDto findById(String id) throws SQLException {
+        return memberService.findById(id);
+    }
+
+    public void updateMember(String id, MemberDto byIdMember) throws SQLException {
+        memberService.updateMember(id, byIdMember);
+    }
 }
