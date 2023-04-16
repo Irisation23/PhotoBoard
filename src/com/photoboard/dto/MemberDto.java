@@ -3,6 +3,19 @@ package com.photoboard.dto;
 public class MemberDto {
 
     private String memberName;
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public void setMemberPwd(String memberPwd) {
+        this.memberPwd = memberPwd;
+    }
+
     private String memberId;
     private String memberPwd;
 
