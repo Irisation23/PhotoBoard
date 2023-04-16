@@ -66,19 +66,19 @@ public class MemberDao {
         return new MemberDto(null, null, null);
     }
 
-    public void updateMember(String id, MemberDto byIdMember) throws SQLException {
+    public void updateMember(int memberNo, MemberDto byIdMember) throws SQLException {
         Connection connection = DBUtil.getInstance().getConnection();
         PreparedStatement pstmt;
 
         try {
             connection.setAutoCommit(false);
             pstmt = connection.prepareStatement("UPDATE Member SET member_name = ?, member_id = ?, member_pwd = ? "
-                + "WHERE member_id = ?");
+                + "WHERE member_no = ?");
 
             pstmt.setString(1, byIdMember.getMemberName());
             pstmt.setString(2, byIdMember.getMemberId());
             pstmt.setString(3, byIdMember.getMemberPwd());
-            pstmt.setString(4, id);
+            pstmt.setInt(4, memberNo);
 
             if (pstmt.executeUpdate() > 0) {
                 System.out.println("update Member Success!");
@@ -91,15 +91,15 @@ public class MemberDao {
         }
     }
 
-    public void deleteMember(String id) throws SQLException {
+    public void deleteMember(int memberNo) throws SQLException {
         Connection connection = DBUtil.getInstance().getConnection();
         PreparedStatement pstmt;
 
         try {
             connection.setAutoCommit(false);
-            pstmt = connection.prepareStatement("DELETE FROM Member WHERE member_id = ?");
+            pstmt = connection.prepareStatement("DELETE FROM Member WHERE member_no = ?");
 
-            pstmt.setString(1, id);
+            pstmt.setInt(1, memberNo);
 
             if (pstmt.executeUpdate() > 0) {
                 System.out.println("delete Member Success!");
