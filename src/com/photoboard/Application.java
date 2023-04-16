@@ -1,13 +1,16 @@
 package com.photoboard;
 
+import com.photoboard.controller.MemberController;
 import com.photoboard.util.DBUtil;
+import com.photoboard.view.View;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         String currentDirectory = System.getProperty("user.dir");
         String txtFile = currentDirectory + "/src/info/dbinfo.txt";
 
@@ -26,5 +29,8 @@ public class Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        View view = new View(new MemberController());
+        view.print();
     }
 }
