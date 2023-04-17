@@ -1,6 +1,6 @@
 # PhotoBoard
 
-- 해당 저장소의 전반적인 작업내역은 아래의 링크를 확인 해 주세요.
+- 해당 저장소의 전반적인 작업내역 및 시연 자료는 아래의 링크를 확인 해 주세요.
 - https://github.com/bunsung92/PhotoBoard/discussions/2
 
 - 해당 저장소의 코드작업 스텝은 아래의 링크를 확인 해 주세요.
